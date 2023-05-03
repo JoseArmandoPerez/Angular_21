@@ -1,0 +1,42 @@
+<h1>Uso de la directiva de atributo ngStylr</h1>
+<h3>Realizado por Luis Octavio Jimenez Cortes</h3>
+
+//Aquí usamos ngStyle directamente al elemento que queremos aplicar el estilo
+<h1 [ngStyle]="{'color':'red','background-color':'#ff0','text-align':'center'}">Sitio fuera de servicio</h1>
+
+//Aquí vemos que en realidad no presenta diferencia a usar simplemente style
+<h1 style="color:red;background-color:#ff0;text-align:center">Sitio fuera de servicio</h1>
+
+//Aquí demos que podemos usar valores asignados en variables 
+<h1 [ngStyle]="{'color':colorEstado}">Sitio fuera de servicio</h1>
+
+//O en lugar de una variable se puede usar un metodo, como en el siguiente
+<h1 [ngStyle]="{'color':retornarColor()}">Sitio fuera de servicio</h1>
+
+//tambien podemos usar ngStyle para poner condicionales
+<table>
+  <tr *ngFor="let elemento of [1,2,3,4,5]">
+      <td [ngStyle]="{'background-color':elemento%2==0?'red':'yellow'}">{{elemento}}</td>
+  </tr>
+</table>
+
+//Además se pueden usar arreglos para variar cosas en un ciclo, como tamaños de fuente
+<p *ngFor="let elemento of [10,12,14,20,30]" [ngStyle]="{'font-size.px':elemento}">
+  Tamaño de fuente en píxeles: {{elemento}}
+</p>
+
+//Se puede crear un modelo base y despues modificarlo, con botones, por ejemplo
+<div [ngStyle]="presentacion">Texto centrado en forma horizontal y vertical.</div>
+<button (click)="agrandar()">Agrandar</button>
+<button (click)="reducir()">Reducir</button>
+<br>
+//Se puede hacer referencia a una propiedad individual con la siguiente sintaxis
+<p [style.color]="'#f00'">Color rojo</p>
+
+//O se puede hacer referencia a una directiva especifica del modelo con esta otra sintaxis
+<p [style.background-color]="colorFondo">Color</p>
+
+//En esta parte se puede ver como usar un metodo para modificar valores, cambiando el tamaño de la fuente con botones
+<div [style.font-size.px]="tamano">Texto</div>
+<button (click)="agrandar()">Agrandar</button>
+<button (click)="reducir()">Reducir</button>
