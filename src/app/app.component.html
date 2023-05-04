@@ -1,42 +1,42 @@
 <h1>Uso de la directiva de atributo ngStylr</h1>
-<h3>Realizado por Luis Octavio Jimenez Cortes</h3>
+<h3>Realizado por Jose Armando Perez Lugo</h3>
 
-//Aquí usamos ngStyle directamente al elemento que queremos aplicar el estilo
+//En este ejemplo, estamos aplicando la directiva ngStyle directamente al elemento HTML al que deseamos aplicar los estilos.
 <h1 [ngStyle]="{'color':'red','background-color':'#ff0','text-align':'center'}">Sitio fuera de servicio</h1>
 
-//Aquí vemos que en realidad no presenta diferencia a usar simplemente style
+//En este caso particular, no hay diferencia en el resultado final si usamos la directiva ngStyle o simplemente la propiedad style nativa del elemento HTML.
 <h1 style="color:red;background-color:#ff0;text-align:center">Sitio fuera de servicio</h1>
 
-//Aquí demos que podemos usar valores asignados en variables 
+//En este ejemplo, estamos demostrando que es posible usar valores asignados a variables para aplicar estilos utilizando la directiva ngStyle.
 <h1 [ngStyle]="{'color':colorEstado}">Sitio fuera de servicio</h1>
 
-//O en lugar de una variable se puede usar un metodo, como en el siguiente
+//En lugar de utilizar una variable para asignar un valor de estilo, también podemos utilizar un método que retorne el valor deseado. En el siguiente ejemplo, estamos usando un método para asignar el color de estilo utilizando la directiva ngStyle.
 <h1 [ngStyle]="{'color':retornarColor()}">Sitio fuera de servicio</h1>
 
-//tambien podemos usar ngStyle para poner condicionales
+//La directiva ngStyle también nos permite utilizar condicionales para aplicar estilos dinámicamente. En el siguiente ejemplo, estamos usando la directiva ngStyle junto con una expresión condicional para aplicar un color de fondo rojo o amarillo a cada celda de una tabla, según si el índice es par o impar.
 <table>
   <tr *ngFor="let elemento of [1,2,3,4,5]">
       <td [ngStyle]="{'background-color':elemento%2==0?'red':'yellow'}">{{elemento}}</td>
   </tr>
 </table>
 
-//Además se pueden usar arreglos para variar cosas en un ciclo, como tamaños de fuente
+//La directiva ngStyle nos permite utilizar arreglos para aplicar estilos dinámicamente en un ciclo. En el siguiente ejemplo, estamos utilizando la directiva ngFor para iterar sobre un arreglo y aplicar diferentes tamaños de fuente a cada elemento de un párrafo, utilizando la propiedad "font-size.px" y el valor del arreglo correspondiente.
 <p *ngFor="let elemento of [10,12,14,20,30]" [ngStyle]="{'font-size.px':elemento}">
   Tamaño de fuente en píxeles: {{elemento}}
 </p>
 
-//Se puede crear un modelo base y despues modificarlo, con botones, por ejemplo
+//Es posible crear un modelo de estilos base y luego modificarlo dinámicamente utilizando la directiva ngStyle y eventos como los clics de botones. En el siguiente ejemplo, estamos utilizando la propiedad "presentacion" para definir un estilo de texto con alineación horizontal y vertical centrada, y luego utilizando dos botones con eventos asociados para modificar dinámicamente la propiedad "font-size" del estilo.
 <div [ngStyle]="presentacion">Texto centrado en forma horizontal y vertical.</div>
 <button (click)="agrandar()">Agrandar</button>
 <button (click)="reducir()">Reducir</button>
 <br>
-//Se puede hacer referencia a una propiedad individual con la siguiente sintaxis
+//La directiva ngStyle también nos permite hacer referencia a propiedades de estilo individuales utilizando la sintaxis [style.property], donde "property" es la propiedad de estilo que queremos modificar. En el siguiente ejemplo, estamos utilizando la propiedad [style.color] para modificar el color del texto de un párrafo a rojo.
 <p [style.color]="'#f00'">Color rojo</p>
 
-//O se puede hacer referencia a una directiva especifica del modelo con esta otra sintaxis
+//Además de hacer referencia a propiedades de estilo individuales, la directiva ngStyle también nos permite hacer referencia a directivas específicas del modelo de estilo utilizando la sintaxis [style.directive], donde "directive" es la directiva específica que queremos modificar. 
 <p [style.background-color]="colorFondo">Color</p>
 
-//En esta parte se puede ver como usar un metodo para modificar valores, cambiando el tamaño de la fuente con botones
+//También podemos utilizar métodos en nuestro componente para modificar los valores de estilo dinámicamente. En el siguiente ejemplo, estamos utilizando dos botones para aumentar o disminuir el tamaño de la fuente de un elemento div. 
 <div [style.font-size.px]="tamano">Texto</div>
 <button (click)="agrandar()">Agrandar</button>
 <button (click)="reducir()">Reducir</button>
